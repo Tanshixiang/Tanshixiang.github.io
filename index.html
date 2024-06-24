@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title >欢迎来到小谭的空间</title>
+    <title>欢迎来到小谭的空间</title>
     <style>
         body, html {
             margin: 0;
@@ -15,12 +15,22 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            opacity: 0.5; /* 设置背景图透明度为50% */
+            position: relative; /* 添加相对定位 */
+        }
+        .background-image h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white; /* 假设背景较深，将文字颜色设置为白色 */
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="background-image">
-        <h1 style="text-align: center;">欢迎来到小谭的空间</h1>
+        <h1>欢迎来到小谭的空间</h1>
     </div>
 </body>
 </html>
