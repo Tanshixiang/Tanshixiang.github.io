@@ -15,7 +15,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            opacity: 0.5; /* 设置背景图透明度为50% */
+            /* opacity: 50; 设置背景图透明度为50% */
             position: relative; /* 添加相对定位 */
         }
         .background-image h1 {
@@ -26,11 +26,26 @@
             color: white; /* 假设背景较深，将文字颜色设置为白色 */
             text-align: center;
         }
+        .button-container {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="background-image">
         <h1>欢迎来到小谭的空间</h1>
+        <div class="button-container">
+            <button onclick="window.location.href='Homepage.html'">点击进入小谭的主页</button>
+        </div>
     </div>
 </body>
 </html>

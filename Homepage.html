@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>小谭的主页</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            cursor: none; /* 隐藏默认鼠标图标 */
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            text-align: center;
+        }
+        .cursor-trail {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url('./images/鼠标样式.png'); /* 替换为你的自定义图案的URL */
+            background-size: cover;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bubble {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: bubble 1s ease-out forwards;
+        }
+        @keyframes bubble {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+        .button-container {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .introduction {
+            position: absolute;
+            top: 200px; /* 将自我介绍的内容下移50px */
+            left: 20px;
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .introduction h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .introduction p {
+            margin: 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>欢迎来到小谭的主页</h1>
+        <p>这是一个测试文本内容。你可以在这里添加更多的信息。</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <div class="cursor-trail"></div>
+    <div class="button-container">
+        <button onclick="window.location.href='Study.html'">学习区</button>
+        <button onclick="window.location.href='Entertainment.html'">娱乐区</button>
+        <button onclick="window.location.href='LifeSharing.html'">个人日常分享</button>
+    </div>
+    <div class="introduction">
+        <h2>自我介绍</h2>
+        <p>你好，我是小谭，一名普通的大学生。我是一个热爱学习和探索新知识的人。我喜欢编程、阅读和旅行。欢迎来到我的主页，希望你能在这里找到有用的信息和有趣的内容。</p>
+    </div>
+
+    <script>
+        const cursorTrail = document.querySelector('.cursor-trail');
+        let colorIndex = 0;
+        const colors = ['rgba(0, 0, 255, 0.5)', 'rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(255, 255, 0, 0.5)', 'rgba(0, 255, 255, 0.5)', 'rgba(255, 0, 255, 0.5)'];
+
+        function updateCursorPosition(e) {
+            cursorTrail.style.left = e.pageX + 'px';
+            cursorTrail.style.top = e.pageY + 'px';
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => updateCursorPosition(e));
+        });
+
+        document.addEventListener('click', (e) => {
+            createBubble(e.pageX, e.pageY);
+        });
+
+        document.addEventListener('contextmenu', (e) => {
+            createBubble(e.pageX, e.pageY);
+        });
+
+        function createBubble(x, y) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.left = x + 'px';
+            bubble.style.top = y + 'px';
+            bubble.style.backgroundColor = colors[colorIndex];
+            document.body.appendChild(bubble);
+
+            bubble.addEventListener('animationend', () => {
+                document.body.removeChild(bubble);
+            });
+
+            colorIndex = (colorIndex + 1) % colors.length; // 切换到下一个颜色
+        }
+    </script>
+</body>
+</html>
